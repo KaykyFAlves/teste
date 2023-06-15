@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="teste">0-0</h1>
+    <button onclick="cor()">botao</button>
+</body>
+    <script>
+        r = 0;
+        g = 0;
+        b = 0;
+        texto = document.getElementById("teste");
+        function cor(){
+            setInterval(function () {
+                console.log("teste");
+                
+                var num = 0;
+                r = Math.floor(Math.random() * 235);
+                g = Math.floor(Math.random() * 225);
+                b = Math.floor(Math.random() * 245);
+                document.getElementById("teste").innerHTML += `<a style="color:rgba(${r}, ${g}, ${b}); display:inline-block;"> Feliz  Aniversário! <h2> `;
+                //document.getElementById("teste").style = `color:rgba(${r}, ${g}, ${b});`;
+        }, 100);
+
+    }
+            
+
+            
+    </script>
+</html>
