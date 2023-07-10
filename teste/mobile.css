@@ -1,0 +1,41 @@
+@media screen and (max-width: 600px) {
+    .left-half{
+        display: none;
+    }
+    
+    #upg-header{
+        display: block;
+    }
+    #matheus-img {
+        margin-top: 20%;
+    }
+
+    #mobile-menu {
+        display: block;
+        padding: 20px;
+        font-size: 16pt;
+        color: white;
+        display: flex;
+        background: linear-gradient(brown, darkred);
+        position: absolute;
+        bottom: 0;
+        width: 90vw;
+    }
+}
+
+@media screen and (min-width: 601px){
+    #mobile-menu {
+        display: none;
+        
+    }
+
+}
+
+#voltar{
+    font-size: 14pt;
+    margin: 5px;
+    background-color: brown;
+    color: white;
+    cursor: pointer;
+
+}
