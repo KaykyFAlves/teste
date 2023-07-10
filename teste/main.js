@@ -2,7 +2,7 @@ var mat_sec=0;
 var mat_click =1
 var mat_total = 0;
 var prod_cards=[];
-
+var multiplier = 1;
 var img_matheus = document.getElementById("matheus-img");
 img_matheus.addEventListener("mousedown", clique);
 img_matheus.addEventListener("mouseup", release);
@@ -14,7 +14,7 @@ var btn_upg = document.getElementById("upgrades");
 var pagenum = 1;
 
 
-var prod_precos = [20, 40, 50, 100, 120, 707];
+var prod_precos = [15, 100, 600, 2250, 7000, 14000];
 var prod_boosts = [1, 5, 10, 40, 75, 100];
 var prod_qtd = [0,0,0,0,0,0];
 
@@ -24,7 +24,7 @@ function refresh(){
 
 
 setInterval(function(){
-    mat_total += mat_sec;
+    mat_total += mat_sec*multiplier;
     refresh();
 }, 1000);
 
@@ -46,9 +46,9 @@ function release(){
 
 
 //producao
-var img_prod = ["dogchapeu", "pugluan", "question",
-"question", "question", "matheusverso"];
-var title_prod = ["dog de chapeu","pug do luan","?","?","?","?"];
+var img_prod = ["dogchapeu", "pugluan", "gatojoinha",
+"dogcalvo", "dogespadachim", "matheusverso"];
+var title_prod = ["dog de chapeu","pug do luan","gato joinha","dog calvo","dog espadachim","matheusverso"];
 var img_card;
 var title_card
 for(let i=0; i<6; i++){
@@ -70,7 +70,7 @@ for(let i=0; i<6; i++){
             console.log(prod_precos)
             mat_total -= prod_precos[i];
             prod_qtd[i] += 1;
-            prod_precos[i] += Math.round(prod_precos[i].toFixed(0)/5);
+            prod_precos[i] += Math.round(prod_precos[i].toFixed(0)/3);
             document.getElementById("matheus-sec").innerHTML = `${mat_sec} matheus p/secundo`;
             document.getElementById(`price${i+1}`).innerHTML = `${prod_precos[i]} m$| ${prod_qtd[i]}`;
         }
@@ -98,17 +98,20 @@ btn_upg.addEventListener("click", function(){
     
 })
 
-var upg_id =    [1,   2,    3]
-var upg_price = [100, 1000, 10000]
-var upg_img =   ["", "", ""]
-var upg_title = ["", "matheus dog", ""]
-
+var upg_id =    [1,   2,    3];
+var upg_price = [100, 1500, 20000];
+var upg_img =   ["chapeu.png", "matheusdog.png", "Matue.jpg"];
+var upg_title = ["chapeu de aniversario", "matheus dog", "matuê"];
+var upg_effect= ["produção 2x","click vale mais 5","produção 2x"]
 var upg_page = document.getElementById("upgpage");
 upg_id.forEach(function(item, i){
     upg_page.innerHTML += `<div class="upg" id="upg${i+1}">
-    <img src="${upg_img[i]}.png">
+    <img class="upgimage" src="images/${upg_img[i]}">
     <h3 class="upgname" id="upg1">${upg_title[i]}</h3><br>
+    <div class="upgbox">
+    <p class="upgtext">${upg_effect[i]}</p>
     <p class="upgtext">custa ${upg_price[i]}m$</p>
+    </div>
 </div>`
 });
 
@@ -116,6 +119,20 @@ for(let i=0; i<upg_id.length; i++){
     document.getElementById(`upg${i+1}`).addEventListener("click", function(){
         if(mat_total >= upg_price[i]){
             document.getElementById(`upg${i+1}`).remove();
+            mat_total -= upg_price[i];
+            if(upg_id[i] == 1){
+                img_matheus.src = "images/matheuschapeu.png";
+                multiplier = multiplier*2;
+            }
+            if(upg_id[i] == 2){
+                img_matheus.src = "images/matheusdog.png";
+                mat_click += 5;
+            }
+            if(upg_id[i] == 3){
+                img_matheus.src = "images/Matue.jpg";
+                multiplier = multiplier*2;
+
+            }
         }
     });
 }

@@ -134,9 +134,18 @@ h4{
 .upg{
     display: flex;
     margin: 3px;
-    border: 2px grey solid;
+    border: 2px rgb(128, 128, 128) solid;
     cursor: pointer;
 }
 .upgname {
     font-size: 12pt;
+}
+
+.upgimage{
+    width: 96px;
+}
+
+.upgbox{
+    background-color: whitesmoke;
+    border-radius: 10%;
 }
